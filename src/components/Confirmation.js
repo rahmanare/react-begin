@@ -1,19 +1,46 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+//rcc to make a react class component 
 
-class Confirmation extends Component {
-    
-    const 
+import React, { Component } from 'react';
+import Notification from "./Notification"
 
-    render() {
-        return (
-            <div class="alert alert-info">
-                <p>Should we bake a pie?</p>
-                <button class="btn btn-primary">Sure</button>
-                <button class="btn btn-danger">No Thanks</button>
-            </div>
-        )
+export default class Confirmation extends Component {
+  state = {
+    notification: this.props.notification,
+    showControl: true
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.notification !== prevProps.notification) {
+      this.state({
+        notification: this.props.notification
+      })
     }
-}
+  }
 
-export default Confirmation;
+  onClick = () => {
+    this.setState({
+      showControl: false
+    })
+  }
+
+  render() {
+    const { notification, showControl } = this.state;
+
+    return (
+      <div>
+          {showControl ? (
+            <>
+              <Notification notification={notification} />
+
+              <div class="btn btn-primary" onClick={this.onClick}>
+                Sure
+              </div>
+              <div class="btn btn-danger" onClick={this.onClick}>
+                No Thanks
+              </div>
+            </>
+          ) : null}
+        </div>
+    )
+  }
+}

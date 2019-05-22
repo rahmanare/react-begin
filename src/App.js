@@ -1,15 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import Confirmation from "./components/Confirmation";
 import './App.css';
 
+class App extends Component {
+  state = {
+    notification: {
+      message: 'Should we bake a pie?',
+      type: 'success',
+      accept: function () {
+        // parent component can do something with accept
+      },
+      decline: function () {
+        // parent component can do something with decline
+      }
+    }
+  }
 
-function App() {
-  return (
-    <div>
-      <Confirmation />
-    </div>
-  );
+  render() {
+    const { notification } = this.state;
+    // var notification = this.state.notification
+
+    return (
+      <div id="app">
+        <Confirmation notification={notification} />
+      </div>
+    );
+  }
 }
 
 export default App;
