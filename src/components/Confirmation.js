@@ -25,20 +25,15 @@ export default class Confirmation extends Component {
 
   render() {
     const { notification, showControl } = this.state;
-
     return (
       <div>
           {showControl ? (
-            <>
-              <Notification notification={notification} />
-
-              <div class="btn btn-primary" onClick={this.onClick}>
-                Sure
-              </div>
-              <div class="btn btn-danger" onClick={this.onClick}>
-                No Thanks
-              </div>
-            </>
+            <Notification {...notification}>
+              <div class="btn btn-primary" 
+                onClick={this.onClick}>Sure</div>
+              <div class="btn btn-danger" 
+                onClick={this.onClick}>No Thanks</div>
+            </Notification>
           ) : null}
         </div>
     )
